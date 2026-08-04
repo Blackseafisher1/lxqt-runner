@@ -109,14 +109,40 @@ this value is only for the smallest screen. The minimum width is 400 px.</string
         </property>
        </widget>
       </item>
-      <item row="7" column="0" colspan="2">
-       <widget class="QCheckBox" name="clearCb">
-        <property name="text">
-         <string>Clear input on launching</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
+       <item row="7" column="0" colspan="2">
+        <widget class="QCheckBox" name="clearCb">
+         <property name="text">
+          <string>Clear input on launching</string>
+         </property>
+        </widget>
+       </item>
+        <item row="8" column="0">
+         <widget class="QLabel" name="searchDelayLabel">
+          <property name="text">
+           <string>Search delay:</string>
+          </property>
+         </widget>
+        </item>
+       <item row="8" column="1">
+        <widget class="QSpinBox" name="searchDelaySB">
+         <property name="suffix">
+          <string> ms</string>
+         </property>
+         <property name="minimum">
+          <number>0</number>
+         </property>
+         <property name="maximum">
+          <number>2000</number>
+         </property>
+         <property name="singleStep">
+          <number>50</number>
+         </property>
+         <property name="value">
+          <number>250</number>
+         </property>
+        </widget>
+       </item>
+      </layout>
     </widget>
    </item>
    <item>

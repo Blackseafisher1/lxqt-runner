@@ -102,6 +102,7 @@ ConfigureDialog::ConfigureDialog(QSettings *settings, const QString &defaultShor
     connect(ui->clearCb, &QAbstractButton::toggled, this, [this] (bool checked) { mSettings->setValue(QL1S("dialog/clear_on_running"), checked); });
     connect(ui->marginSB, &QAbstractSpinBox::editingFinished, this, [this] { mSettings->setValue(QL1S("dialog/top_margin"), ui->marginSB->value()); });
     connect(ui->listShownItemsSB, &QAbstractSpinBox::editingFinished, this, [this] { mSettings->setValue(QL1S("dialog/list_shown_items"), ui->listShownItemsSB->value()); });
+    connect(ui->searchDelaySB, &QAbstractSpinBox::editingFinished, this, [this] { mSettings->setValue(QL1S("dialog/search_delay"), ui->searchDelaySB->value()); });
 }
 
 
@@ -159,6 +160,7 @@ void ConfigureDialog::settingsChanged()
     ui->historyFirstCb->setEnabled(history_use);
     ui->clearCb->setChecked(mSettings->value(QL1S("dialog/clear_on_running"), true).toBool());
     ui->listShownItemsSB->setValue(mSettings->value(QL1S("dialog/list_shown_items"), 4).toInt());
+    ui->searchDelaySB->setValue(mSettings->value(QL1S("dialog/search_delay"), 250).toInt());
 }
 
 

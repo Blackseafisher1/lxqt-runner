@@ -83,10 +83,10 @@ Dialog::Dialog(QWidget *parent) :
     connect(mSettings, &LXQt::Settings::settingsChanged, this, &Dialog::applySettings);
 
     mSearchTimer.setSingleShot(true);
+    mSearchTimer.setInterval(250);
     connect(&mSearchTimer, &QTimer::timeout, ui->commandEd, [this] {
         setFilter(ui->commandEd->text());
     });
-    mSearchTimer.setInterval(250); // typing speed (not very fast)
 
     ui->commandEd->installEventFilter(this);
 
@@ -551,6 +551,9 @@ void Dialog::applySettings()
     mCommandItemModel->setUseHistory(mSettings->value(QL1S("dialog/history_use"), true).toBool());
     mCommandItemModel->showHistoryFirst(mSettings->value(QL1S("dialog/history_first"), true).toBool());
     ui->commandList->setShownCount(mSettings->value(QL1S("dialog/list_shown_items"), 4).toInt());
+
+    int searchDelay = qBound(0, mSettings->value(QL1S("dialog/search_delay"), 250).toInt(), 2000);
+    mSearchTimer.setInterval(searchDelay);
 
     mSettings->sync();
 }
